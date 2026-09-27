@@ -71,6 +71,17 @@ background-size:70px 70px,113px 113px;background-position:10px 20px,40px 70px;op
 .letter strong{color:#7f2f62}
 .letter h3{color:#8f356d}
 .final-surprise .sub{color:#ddd4e6}
+
+.art-float{
+ position:fixed;z-index:60;font-size:30px;pointer-events:none;
+ animation:artRise 5s ease-out forwards;
+ filter:drop-shadow(0 4px 5px #0005);
+}
+@keyframes artRise{
+ 0%{transform:translateY(0) rotate(0deg) scale(.7);opacity:0}
+ 12%{opacity:1}
+ 100%{transform:translateY(-110vh) translateX(70px) rotate(var(--rot)) scale(1.15);opacity:0}
+}
 </style>
 </head>
 <body>
@@ -141,7 +152,7 @@ Hari ini bukan sekadar hari ulang tahun. Ada sedikit kejutan dari orang yang mas
       <p style="text-align:center"><strong>Selamat ulang tahun, Rafi Wahyu Insani! 🎂❤️</strong></p>
       <p style="text-align:center">Semoga tahun ini penuh kejutan baik.</p>
     </div>
-    <button onclick="celebrate()">🎉 Rayakan Sekali Lagi</button>
+    <button onclick="celebrate()">🎨 Rayakan Sekali Lagi</button>
   </div>
 </div>
 </section>
@@ -227,10 +238,16 @@ function confetti(n){
 }
 function celebrate(){
  confetti(120);
- for(let i=0;i<12;i++){
-  const h=document.createElement('span');h.className='heart';h.textContent='❤️';
-  h.style.left=Math.random()*100+'vw';h.style.bottom='-30px';h.style.animationDelay=Math.random()*1.5+'s';
-  document.body.appendChild(h);setTimeout(()=>h.remove(),5500)
+ const art=['🖌️','🎨','🖍️','✏️','🖊️','🖼️','🧑‍🎨'];
+ for(let i=0;i<18;i++){
+  const a=document.createElement('span');a.className='art-float';
+  a.textContent=art[Math.floor(Math.random()*art.length)];
+  a.style.left=Math.random()*100+'vw';
+  a.style.bottom='-45px';
+  a.style.animationDelay=Math.random()*1.5+'s';
+  a.style.setProperty('--rot',(Math.random()*50-25)+'deg');
+  document.body.appendChild(a);
+  setTimeout(()=>a.remove(),5500);
  }
 }
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev()});
