@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Untuk Jendol — Rafi Wahyu Insani 🎂</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#fff;background:#100c20}
+.slider{width:100%;height:100%;position:relative}
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:25px 20px;
+opacity:0;visibility:hidden;transform:scale(1.04);transition:.7s ease;background:radial-gradient(circle at 20% 10%,#5b357d 0,transparent 35%),linear-gradient(145deg,#171126,#35205c)}
+.slide.active{opacity:1;visibility:visible;transform:scale(1)}
+.content{width:min(500px,100%);text-align:center}
+.badge{display:inline-block;padding:7px 13px;border:1px solid #ffffff28;border-radius:99px;background:#ffffff12;font-size:12px;letter-spacing:1px}
+h1{font-size:clamp(44px,14vw,76px);line-height:.9;margin:18px 0 12px}
+h2{font-size:clamp(29px,8vw,43px);margin:15px 0}
+p{font-size:16px;line-height:1.7;color:#f2ebfa}
+.sub{font-size:14px;color:#cfc1e4}
+button{border:0;padding:13px 21px;border-radius:999px;font-weight:800;font-size:15px;color:#301229;background:linear-gradient(135deg,#ffd166,#ff8fab);box-shadow:0 8px 25px #0005;cursor:pointer;margin-top:12px}
+button:active{transform:scale(.96)}
+.emoji{font-size:86px;display:block;animation:float 2.5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-9px)}}
+.card{padding:25px;border:1px solid #ffffff1d;border-radius:27px;background:#ffffff0d;backdrop-filter:blur(12px);box-shadow:0 18px 50px #0005}
+.dots{position:fixed;z-index:20;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:7px}
+.dot{width:7px;height:7px;border-radius:50%;background:#ffffff55;transition:.3s}.dot.active{width:22px;border-radius:9px;background:#fff}
+.nav{position:fixed;z-index:20;bottom:16px;right:16px;background:#ffffff12;color:#fff;border:1px solid #ffffff22;padding:8px 12px;font-size:12px}
+.cake{font-size:105px;cursor:pointer;filter:drop-shadow(0 12px 20px #0006)}
+.flame{animation:flicker .25s infinite alternate;display:inline-block}
+@keyframes flicker{to{transform:scale(1.15) translateY(-2px)}}
+.cake.blown .flame{opacity:0;transform:scale(0);transition:.4s}
+.wish{display:none;margin-top:16px;padding:15px;border-radius:18px;background:#ffffff0d;color:#ffe9a8}
+.gift{font-size:115px;cursor:pointer;display:inline-block;transition:.4s}.gift.open{transform:rotate(-7deg) scale(1.12)}
+.giftmsg{display:none;margin-top:15px}
+.letter{text-align:left;padding:23px;border-radius:24px;background:#fff;color:#37233f;box-shadow:0 20px 50px #0005;line-height:1.7}
+.letter h3{text-align:center;margin-top:0;color:#9b3e72}
+.big{font-size:24px;font-weight:800;color:#ffd166}
+.confetti{position:fixed;z-index:50;top:-15px;width:8px;height:14px;animation:fall 3s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+.heart{position:fixed;z-index:1;font-size:20px;animation:rise 5s linear forwards;opacity:.8}
+@keyframes rise{to{transform:translateY(-110vh) translateX(60px);opacity:0}}
+
+.gift-slide.space-mode{background:radial-gradient(circle at 50% 30%,#1c285e 0,#090d25 42%,#02030d 100%)}
+.gift-content{position:relative;overflow:hidden;min-height:520px;display:flex;align-items:center;justify-content:center}
+#giftScene,#spaceScene,#finalSurprise{width:100%}
+.gift.open{animation:giftOpen .65s ease forwards}
+@keyframes giftOpen{0%{transform:scale(1)}45%{transform:scale(1.18) rotate(-5deg)}100%{transform:scale(.72) translateY(40px);opacity:.15}}
+.gift.open:after{content:"✨";position:absolute;font-size:60px;animation:spark .7s ease-out forwards}
+@keyframes spark{from{opacity:1;transform:scale(.3)}to{opacity:0;transform:scale(2)}}
+#spaceScene{height:520px;position:relative;overflow:hidden;border-radius:22px}
+.stars-layer,.stars-layer:before,.stars-layer:after{position:absolute;inset:0;content:"";background-image:
+radial-gradient(circle,#fff 1px,transparent 1.5px),radial-gradient(circle,#fff 1px,transparent 1.5px);
+background-size:70px 70px,113px 113px;background-position:10px 20px,40px 70px;opacity:.65}
+.stars-layer:after{background-size:157px 157px;opacity:.35}
+.rocket{position:absolute;left:50%;bottom:100px;transform:translateX(-50%);font-size:76px;z-index:5;filter:drop-shadow(0 8px 10px #000)}
+.rocket.fly{animation:flyAway 3.2s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes flyAway{0%{transform:translate(-50%,0) rotate(-5deg)}100%{transform:translate(-50%,-620px) rotate(-7deg)}}
+.moon{position:absolute;right:14%;top:30%;font-size:100px;z-index:4;cursor:pointer;opacity:0;transform:scale(.2);filter:drop-shadow(0 0 30px #fff6)}
+.moon.show{animation:moonAppear 1.8s ease forwards}
+@keyframes moonAppear{70%{opacity:1;transform:scale(1.12)}100%{opacity:1;transform:scale(1)}}
+.planet{position:absolute;border-radius:50%;opacity:.65}
+.p1{width:110px;height:110px;left:-35px;top:18%;background:radial-gradient(circle at 35% 30%,#dba0ff,#573a9c 55%,#201746)}
+.p2{width:48px;height:48px;right:8%;bottom:18%;background:#8f82d8}
+.space-text{position:absolute;bottom:25px;left:10%;right:10%;z-index:6;color:#e9e3ff;font-size:14px}
+.final-surprise{animation:fadeIn 1s ease}.moon-big{font-size:95px;filter:drop-shadow(0 0 25px #fff8);margin-bottom:4px}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* Final letter readability */
+.letter{background:#fffafc;color:#2f2032}
+.letter p{color:#2f2032 !important}
+.letter strong{color:#7f2f62}
+.letter h3{color:#8f356d}
+.final-surprise .sub{color:#ddd4e6}
+</style>
+</head>
+<body>
+<div class="slider">
+
+<section class="slide active">
+<div class="content">
+<span class="emoji">🎁</span>
+<div class="badge">ADA SESUATU UNTUKMU</div>
+<h1>JENDOL</h1>
+<p>Rafi Wahyu Insani, kelahiran 1999.<br><br>
+Hari ini bukan sekadar hari ulang tahun. Ada sedikit kejutan dari orang yang masih mengingatmu, meskipun kamu sedang jauh di perantauan.</p>
+<button onclick="next()">Mulai Kejutan ✨</button>
+</div></section>
+
+<section class="slide">
+<div class="content card">
+<span class="emoji">🌙</span>
+<h2>Untuk Kamu yang Sedang Merantau</h2>
+<p>Jauh dari rumah memang kadang bikin rindu datang diam-diam. Tapi semoga perjalananmu di tempat rantau membawa banyak pengalaman, teman baik, rezeki, dan cerita yang suatu hari akan kita tertawakan bersama.</p>
+<p class="big">Tetap kuat, Jendol! 💪</p>
+<button onclick="next()">Ada Doa Untukmu →</button>
+</div></section>
+
+<section class="slide">
+<div class="content card">
+<span class="emoji">🤲</span>
+<h2>Halaman Doa</h2>
+<p>Pejamkan mata sebentar.<br>Bayangkan semua hal baik yang ingin kamu capai tahun ini.</p>
+<p>Semoga umurmu dipenuhi kesehatan, ketenangan, rezeki yang baik, pekerjaan yang lancar, orang-orang yang tulus, dan keberanian untuk terus melangkah.</p>
+<button onclick="showWish()">Aku Sudah Berdoa 🤍</button>
+<div id="wish" class="wish">✨ Aamiin. Semoga satu per satu doa baikmu menemukan jalannya.</div>
+<button id="wishNext" style="display:none" onclick="next()">Lanjut ke Kue 🎂</button>
+</div></section>
+
+<section class="slide">
+<div class="content">
+<div class="cake" id="cake" onclick="blow()">🎂<div style="font-size:35px;margin-top:-75px;position:relative"><span class="flame">🔥</span></div></div>
+<h2>Tiup Lilinnya!</h2>
+<p>Tarik napas dalam-dalam… lalu tap kuenya untuk meniup lilin. 🎂</p>
+<div id="blownMsg" class="wish">🎉 Lilinnya padam! Semoga semua harapan baikmu ikut menyala.</div>
+<button id="cakeNext" style="display:none" onclick="next()">Ada Kado 🎁</button>
+</div></section>
+
+<section class="slide gift-slide" id="giftSlide">
+<div class="content card gift-content">
+  <div id="giftScene">
+    <div class="gift" id="gift" onclick="openGift()">🎁</div>
+    <h2 id="giftTitle">Kado Rahasia</h2>
+    <p id="giftHint">Ada sesuatu di dalamnya…<br><b>Klik kadonya!</b> 🎁</p>
+  </div>
+
+  <div id="spaceScene" style="display:none">
+    <div class="stars-layer"></div>
+    <div class="planet p1"></div><div class="planet p2"></div>
+    <div class="rocket" id="rocket">🚀</div>
+    <div class="moon" id="moon" onclick="openMoon()">🌕</div>
+    <p id="spaceText" class="space-text">🚀 Menuju sebuah kejutan di antara bintang-bintang…</p>
+  </div>
+
+  <div id="finalSurprise" style="display:none" class="final-surprise">
+    <div class="moon-big">🌕</div>
+    <div class="letter">
+      <h3>🌙 Pesan yang Tersembunyi di Bulan</h3>
+      <p>Jendol, sejauh apa pun kamu pergi, selalu ada orang-orang yang berharap kamu baik-baik saja.</p>
+      <p>Semoga perjalananmu di perantauan membawa kamu semakin dekat dengan semua cita-cita yang kamu perjuangkan.</p>
+      <p><strong>Jangan takut bermimpi tinggi.</strong> Kalau perlu, sekalian sampai ke bulan. 🚀</p>
+      <p style="text-align:center"><strong>Selamat ulang tahun, Rafi Wahyu Insani! 🎂❤️</strong></p>
+      <p style="text-align:center">Semoga tahun ini penuh kejutan baik.</p>
+    </div>
+    <button onclick="celebrate()">🎉 Rayakan Sekali Lagi</button>
+  </div>
+</div>
+</section>
+
+<section class="slide">
+<div class="content">
+<div class="letter">
+<h3>💌 Surat Kecil untuk Jendol</h3>
+<p>Selamat ulang tahun, Jendol!</p>
+<p>Semoga bertambahnya usia bukan cuma menambah angka, tapi juga menambah pengalaman, kedewasaan, keberanian, dan alasan untuk bersyukur.</p>
+<p>Untuk semua perjuanganmu di tanah rantau, semoga ada kabar baik yang datang setelah penantian panjang.</p>
+<p>Jangan lupa pulang membawa cerita. Karena teman-temanmu di sini masih punya banyak cerita yang belum selesai. 😆</p>
+<p style="text-align:center"><strong>Selamat ulang tahun, Rafi Wahyu Insani.</strong><br>
+Semoga tahun ini menjadi salah satu bab terbaik dalam hidupmu. ❤️</p>
+</div>
+<p class="sub">Dibuat khusus untuk Jendol • 1999 → ∞</p>
+<button onclick="celebrate()">🎉 Sekali Lagi: Selamat Ulang Tahun!</button>
+</div></section>
+
+</div>
+<div class="dots" id="dots"></div>
+<button class="nav" onclick="prev()">‹ Kembali</button>
+
+<script>
+let current=0;
+const slides=[...document.querySelectorAll('.slide')],dots=document.getElementById('dots');
+slides.forEach((_,i)=>{let d=document.createElement('span');d.className='dot'+(i?'':' active');dots.appendChild(d)});
+function update(){
+ slides.forEach((s,i)=>s.classList.toggle('active',i===current));
+ [...dots.children].forEach((d,i)=>d.classList.toggle('active',i===current));
+}
+function next(){if(current<slides.length-1){current++;update()}}
+function prev(){if(current>0){current--;update()}}
+function showWish(){
+ document.getElementById('wish').style.display='block';
+ document.getElementById('wishNext').style.display='inline-block';
+ confetti(20);
+}
+function blow(){
+ const cake=document.getElementById('cake');cake.classList.add('blown');
+ document.getElementById('blownMsg').style.display='block';
+ document.getElementById('cakeNext').style.display='inline-block';
+ confetti(45);
+}
+function openGift(){
+  const gift=document.getElementById('gift');
+  const slide=document.getElementById('giftSlide');
+  const giftScene=document.getElementById('giftScene');
+  const space=document.getElementById('spaceScene');
+  const rocket=document.getElementById('rocket');
+  const moon=document.getElementById('moon');
+  const text=document.getElementById('spaceText');
+
+  gift.classList.add('open');
+  confetti(35);
+
+  setTimeout(()=>{
+    giftScene.style.display='none';
+    slide.classList.add('space-mode');
+    space.style.display='block';
+    text.textContent='🚀 Roketnya meluncur… menuju kejutan di antara bintang-bintang!';
+    rocket.classList.add('fly');
+
+    setTimeout(()=>{
+      text.textContent='🌙 Ada sesuatu di sana… Klik bulan untuk melihatnya.';
+      moon.classList.add('show');
+    },3000);
+  },850);
+}
+function openMoon(){
+  document.getElementById('spaceScene').style.display='none';
+  document.getElementById('finalSurprise').style.display='block';
+  confetti(70);
+}
+function confetti(n){
+ for(let i=0;i<n;i++){
+  const c=document.createElement('i');c.className='confetti';
+  c.style.left=Math.random()*100+'vw';
+  c.style.background=['#ff6fae','#ffd166','#7bdff2','#b8f2e6','#cdb4db'][Math.floor(Math.random()*5)];
+  c.style.animationDelay=Math.random()*.6+'s';
+  document.body.appendChild(c);setTimeout(()=>c.remove(),3500)
+ }
+}
+function celebrate(){
+ confetti(120);
+ for(let i=0;i<12;i++){
+  const h=document.createElement('span');h.className='heart';h.textContent='❤️';
+  h.style.left=Math.random()*100+'vw';h.style.bottom='-30px';h.style.animationDelay=Math.random()*1.5+'s';
+  document.body.appendChild(h);setTimeout(()=>h.remove(),5500)
+ }
+}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev()});
+</script>
+</body>
+</html>
